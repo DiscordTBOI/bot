@@ -1,13 +1,10 @@
-import fs from "fs";
+import { Context } from "detritus-client/lib/command";
+import { Message } from "detritus-client/lib/structures";
 
-export function getFiles(folder: string) : Array<string> {
-    const filePaths = [];
-    const allFiles = fs.readdirSync(folder);
-    for (const file of allFiles) {
-        const path = `${folder}/${file}`;
-        const fileStats = fs.statSync(path);
-        if (fileStats.isFile()) filePaths.push(path);
-        else filePaths.push(...getFiles(path));
-    }
-    return filePaths;
+export function error(message: string, ctx: Context) : Promise<Message> {
+    return ctx.reply({content: `> ❌ ${message}`, messageReference: {channelId: ctx.channelId, messageId: ctx.messageId}, allowedMentions: {repliedUser: false}});
+}
+
+export function success(message: string, ctx: Context) : Promise<Message> {
+    return ctx.reply({content: `> ✅ ${message}`, messageReference: {channelId: ctx.channelId, messageId: ctx.messageId}, allowedMentions: {repliedUser: false}});
 }

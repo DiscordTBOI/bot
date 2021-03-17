@@ -1,7 +1,7 @@
 
 import Net from "net";
 
-const Sockets = new Map<string, Net.Socket>();
+export const Sockets = new Map<string, Net.Socket>();
 
 export default (port: number) : Net.Server => {
     const server = Net.createServer();
@@ -18,7 +18,6 @@ export default (port: number) : Net.Server => {
                 Sockets.set(id, socket);
                 break;
             }
-            console.log("Packet ID: ", content[0], "Content: ", id);
         });
 
         socket.on("close", () => {

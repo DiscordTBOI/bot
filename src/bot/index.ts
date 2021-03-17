@@ -1,6 +1,7 @@
 
-import {CommandClient, CommandClientAdd} from "detritus-client";
-import {getFiles} from "../utils";
+import {CommandClient} from "detritus-client";
+
+export const LinkedUsers = new Map<string, LinkedUser>(); // user id - socket id
 
 export default async (token: string, prefix: string): Promise<void> => {
 
@@ -13,18 +14,16 @@ export default async (token: string, prefix: string): Promise<void> => {
             presences: {enabled: false},
             users: {enabled: false}
         },
-        prefix
+        prefix,
     });
 
-    const allCommands = getFiles(`${__dirname}/commands`);
-    for (const commandPath of allCommands) {
-        // eslint-disable-next-line @typescript-eslint/no-var-requires
-        const command = require(commandPath).default as CommandClientAdd;
-        if (!command) continue;
-        commandClient.add(command);
-    }
-
+    commandClient.addMultipleIn(`${__dirname}/commands`, {isAbsolute: true, subdirectories: true});
     await commandClient.run();
 
     console.log("Bot started");
 };
+
+export interface LinkedUser {
+    socketId: string,
+    channelId: string
+}
