@@ -1,0 +1,28 @@
+{
+  "name": "discordtboa-bot",
+  "version": "0.0.1",
+  "description": "The discord bot (and TCP server) used to interact with the DiscordTBOA mod",
+  "main": "dist/index.js",
+  "devDependencies": {
+    "typescript": "^4.2.3",
+    "@typescript-eslint/eslint-plugin": "^4.18.0",
+    "@typescript-eslint/parser": "^4.18.0",
+    "eslint": "^7.22.0",
+    "eslint-plugin-react": "^7.22.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "tsc && node ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DiscordTBOA/bot.git"
+  },
+  "keywords": [],
+  "author": "GoogleFeud",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/DiscordTBOA/bot/issues"
+  },
+  "homepage": "https://github.com/DiscordTBOA/bot#readme"
+}
