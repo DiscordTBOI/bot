@@ -1,2 +1,6 @@
 
-console.log("Hello World!");
+import CreateServer from "./server";
+
+(() => {
+    CreateServer();
+})();
