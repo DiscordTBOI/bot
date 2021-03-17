@@ -3,7 +3,7 @@ import Net from "net";
 
 const Sockets = new Map<string, Net.Socket>();
 
-export default () : Net.Server => {
+export default (port: number) : Net.Server => {
     const server = Net.createServer();
 
     server.on("connection", (socket) => {
@@ -30,7 +30,7 @@ export default () : Net.Server => {
         });
     });
 
-    server.listen(100, "127.0.0.1");
+    server.listen(port, "127.0.0.1");
     console.log("Server started");
     return server;
 };

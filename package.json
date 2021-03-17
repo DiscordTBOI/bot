@@ -25,5 +25,8 @@
   "bugs": {
     "url": "https://github.com/DiscordTBOA/bot/issues"
   },
-  "homepage": "https://github.com/DiscordTBOA/bot#readme"
+  "homepage": "https://github.com/DiscordTBOA/bot#readme",
+  "dependencies": {
+    "detritus-client": "^0.13.0"
+  }
 }
