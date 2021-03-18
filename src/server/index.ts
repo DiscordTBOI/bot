@@ -13,8 +13,8 @@ export default (port: number) : Net.Server => {
             if (!data) return;
             const content = data.toString("utf-8");
             id = content.slice(1);
-            switch(content[0]) {
-            case "0":
+            switch(Number(content[0])) {
+            case PACKET_RECEIVE_CODES.AUTH:
                 Sockets.set(id, socket);
                 break;
             }
@@ -33,3 +33,11 @@ export default (port: number) : Net.Server => {
     console.log("Server started");
     return server;
 };
+
+export const enum PACKET_SEND_CODES {
+    EXECUTE_COMMAND
+}
+
+export const enum PACKET_RECEIVE_CODES {
+    AUTH
+}

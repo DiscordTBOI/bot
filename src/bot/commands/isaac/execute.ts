@@ -1,8 +1,8 @@
 
 import { CommandClientAdd } from "detritus-client";
 import {LinkedUsers} from "../../";
-import {Sockets} from "../../../server";
-import { error, success } from "../../../utils";
+import {PACKET_SEND_CODES, Sockets} from "../../../server";
+import { error, success, sendPacket } from "../../../utils";
 
 export default {
     name: "execute",
@@ -15,9 +15,10 @@ export default {
         const socket = Sockets.get(userToken.socketId);
         if (!socket) {
             LinkedUsers.delete(ctx.userId);
-            return error("Looks like you exited the game! Unliked account.", ctx);
+            return error("Looks like you exited the game! Unlinked account.", ctx);
         }
-        socket.write(code + "\n");
+
+        sendPacket(PACKET_SEND_CODES.EXECUTE_COMMAND, code.trim(), socket);
         success("Command executed", ctx);
     }
 } as CommandClientAdd;
