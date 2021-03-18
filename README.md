@@ -33,7 +33,7 @@ Get the mod itself [here](https://github.com/DiscordTBOI/client)!
 {
     "token": "your_bot_token",
     "prefix": "b!",
-    "port": 100
+    "port": 10032
 }
 ```
 
